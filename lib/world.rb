@@ -9,7 +9,7 @@ class World < Chingu::GameState
 
     
     self.viewport.lag = 0                           # 0 = no lag, 0.99 = a lot of lag.
-    self.viewport.game_area = [0, 0, 600, 600]    # Viewport restrictions, full "game world/map/area"
+    self.viewport.game_area = [0, 0, 2000, 2000]    # Viewport restrictions, full "game world/map/area"
     
     @gg = GameGrid.new
     @gg.setup(100, 100)
@@ -18,7 +18,7 @@ class World < Chingu::GameState
     
     @cursor = MapCursor.create(:x => 400, :y => 300, :image => Image["cursor.png"])
     
-    every(5000) { self.viewport.center_around (@cursor) }
+ 
 
 
     super
@@ -26,6 +26,7 @@ class World < Chingu::GameState
   
   def update
     @worker.set_target(@cursor.get_target) if @cursor.target_available? == true
+    self.viewport.center_around (@cursor)
     super
   end
   

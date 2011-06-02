@@ -10,6 +10,7 @@ require ROOT_PATH + '/lib/game_grid'
 require ROOT_PATH + '/lib/tile'
 require ROOT_PATH + '/lib/map_cursor'
 require ROOT_PATH + '/lib/worker'
+require ROOT_PATH + "/lib/game_block" 
 
 
 class Game < Chingu::Window

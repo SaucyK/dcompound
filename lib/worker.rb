@@ -8,9 +8,13 @@ class Worker < GameObject
   
   def set_target(coords)
     puts "ooh, a job! I'm going to [#{coords[0]},#{coords[1]}] from [#{@x},#{@y}]"
-    @target_x = coords[0]
-    @target_y = coords[1]
+    @target_x = coords[0]*20
+    @target_y = coords[1]*20
     @has_task = true
+  end
+  
+  def block_coords
+    return [self.x/20,self.y/20]
   end
   
   def update
