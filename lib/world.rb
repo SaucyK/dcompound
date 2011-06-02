@@ -19,7 +19,7 @@ class World < Chingu::GameState
     @cursor = MapCursor.create(:x => 400, :y => 300, :image => Image["cursor.png"])
     
     @music = Song["chilled1.mp3"]
-    @music.play(true)
+    
 
     self.input = {
       :m => :toggle_music,
