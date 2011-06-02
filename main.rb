@@ -6,17 +6,18 @@ include Chingu
 ROOT_PATH = File.dirname(File.expand_path(__FILE__))
 
 require ROOT_PATH + '/lib/world'
+require ROOT_PATH + "/lib/game_block" 
 require ROOT_PATH + '/lib/game_grid'
 require ROOT_PATH + '/lib/tile'
 require ROOT_PATH + '/lib/map_cursor'
 require ROOT_PATH + '/lib/worker'
 require ROOT_PATH + "/lib/game_block" 
-
+require ROOT_PATH + "/lib/game_block_list" 
 
 class Game < Chingu::Window
   
   def initialize
-    super 900,600
+    super 890,590
     self.caption = "Drug Compound"
     self.input = {:escape => :exit}
     retrofy
@@ -24,7 +25,7 @@ class Game < Chingu::Window
     Gosu::Image.autoload_dirs << File.join(assets_path, "images")
     Gosu::Image.autoload_dirs << File.join(assets_path, "images","tiles")
     Gosu::Image.autoload_dirs << File.join(assets_path, "images","workers")
-    
+    Gosu::Song.autoload_dirs << File.join(assets_path, "music")
     switch_game_state(World)
     
   end

@@ -40,7 +40,7 @@ class MapCursor < Chingu::GameObject
   end
   
   def right
-    self.x += 20 unless self.x >= 2000
+    self.x += 20 unless self.x >= 1980
   end
   
   def up
@@ -48,7 +48,7 @@ class MapCursor < Chingu::GameObject
   end
   
   def down
-    self.y += 20 unless self.y >= 2000
+    self.y += 20 unless self.y >= 1980
   end
   
   def update

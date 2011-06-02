@@ -9,7 +9,7 @@ class World < Chingu::GameState
 
     
     self.viewport.lag = 0                           # 0 = no lag, 0.99 = a lot of lag.
-    self.viewport.game_area = [0, 0, 2000, 2000]    # Viewport restrictions, full "game world/map/area"
+    self.viewport.game_area = [10, 10, 2000, 2000]    # Viewport restrictions, full "game world/map/area"
     
     @gg = GameGrid.new
     @gg.setup(100, 100)
@@ -18,9 +18,12 @@ class World < Chingu::GameState
     
     @cursor = MapCursor.create(:x => 400, :y => 300, :image => Image["cursor.png"])
     
- 
+    @music = Song["chilled1.mp3"]
+    @music.play(true)
 
-
+    self.input = {
+      :m => :toggle_music,
+    }
     super
   end
   
@@ -36,6 +39,13 @@ class World < Chingu::GameState
     super
   end
   
+  def toggle_music
+    if @music.playing?
+        @music.pause
+      else
+        @music.play(true)
+      end
+  end
   
   
 end
