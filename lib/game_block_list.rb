@@ -22,6 +22,52 @@ class GameBlockList < GameObjectList
   end
   
   
+  def blocks_next_to block
+    bx = block.x/20
+    by = block.y/20
+    ab = Array.new
+    
+    # top left
+    unless bx <= 0 && by <= 0
+      ab << self.block_at([bx-1,by-1]) unless self.block_at([bx-1,by-1]).nil?
+    end  
+    
+    # top center
+    unless by <= 0 
+      ab << self.block_at([bx,by-1]) unless self.block_at([bx,by-1]).nil?
+    end
+    
+    # top right
+    unless by <= 0 and bx >= GAME_X_SIZE
+      ab << self.block_at([bx+1,by-1]) unless self.block_at([bx+1,by-1]).nil?
+    end
+    
+    # center right
+    unless bx >= GAME_X_SIZE
+      ab << self.block_at([bx+1,by]) unless self.block_at([bx+1,by]).nil?
+    end
+    
+    # bottom right
+    unless by >= GAME_Y_SIZE &&  bx >= GAME_Y_SIZE
+      ab << self.block_at([bx+1,by+1]) unless self.block_at([bx+1,by-1]).nil?
+    end
+    
+    # bottom center
+    unless by >= GAME_Y_SIZE
+      ab << self.block_at([bx,by+1]) unless self.block_at([bx,by-1]).nil?
+    end
+    
+    # bottom left
+    unless by >= GAME_Y_SIZE && bx <= 0
+      ab << self.block_at([bx-1,by+1]) unless self.block_at([bx-1,by+1]).nil?
+    end
+    
+    # center left
+    unless bx <= 0
+      ab << self.block_at([bx-1,by]) unless self.block_at([bx-1,by]).nil?
+    end
+    
+  end
   
   
 end
