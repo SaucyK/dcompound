@@ -11,6 +11,7 @@ require ROOT_PATH + "/lib/game_block_list"
 require ROOT_PATH + '/lib/game_grid'
 require ROOT_PATH + '/lib/tile'
 require ROOT_PATH + '/lib/tree'
+require ROOT_PATH + '/lib/wall'
 require ROOT_PATH + '/lib/map_cursor'
 require ROOT_PATH + '/lib/worker'
 require ROOT_PATH + "/lib/game_block" 

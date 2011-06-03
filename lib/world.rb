@@ -13,11 +13,13 @@ class World < Chingu::GameState
     
     @gg = GameGrid.new
     @gg.setup(GAME_X_SIZE, GAME_Y_SIZE)
-    @worker = Worker.create(:x => 200, :y => 200, :image => Image["worker1.png"])
+    #@worker = 
     
     
-    @cursor = MapCursor.create(:x => 400, :y => 300, :image => Image["cursor.png"])
+   # @cursor = 
     
+    @gg.add_cursor()
+    @gg.add_worker()
     @music = Song["chilled1.mp3"]
     
 
@@ -25,13 +27,14 @@ class World < Chingu::GameState
       :m => :toggle_music,
     }
     
-    every(5000) { @gg.timed_tree_growth }
+    every(120000) { @gg.timed_tree_growth }
     super
   end
   
   def update
-    @worker.set_target(@cursor.get_target) if @cursor.target_available? == true
-    self.viewport.center_around (@cursor)
+    @gg.update
+    #@worker.set_target(@cursor.get_target) if @cursor.target_available? == true
+    self.viewport.center_around (@gg.cursor)
     super
   end
   

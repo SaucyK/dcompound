@@ -2,7 +2,7 @@ class Tree < GameObject
   
   attr_accessor :block
   
-  def is_passable?
+  def passable?
     true
   end
   

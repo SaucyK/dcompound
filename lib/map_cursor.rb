@@ -1,12 +1,13 @@
 class MapCursor < Chingu::GameObject
-  
+  attr_accessor :grid
   def setup
     self.input = {
       :holding_left => :left, 
       :holding_right => :right, 
       :holding_up => :up, 
       :holding_down => :down,
-      :space => :set_target
+      :space => :set_target,
+      :w => :place_wall
       }
       
       @target_available = false
@@ -29,6 +30,10 @@ class MapCursor < Chingu::GameObject
     @target_y = self.y/20
     @target_available = true
     
+  end
+  
+  def place_wall
+    self.grid.place_wall(self.block_coords)
   end
   
   def block_coords

@@ -17,7 +17,7 @@ class GameBlock < GameObject
   
   def add_fringe(fringe)
     @fringe = fringe
-    fringe.block = self
+    @fringe.block = self
   end
   
   def add_actor(actor)
@@ -31,7 +31,9 @@ class GameBlock < GameObject
   end
   
   def passable?
-    
+    return false if !@fringe.nil? && !@fringe.passable?
+    return false unless @filling.nil?
+    return true
   end
   
   def block_coords

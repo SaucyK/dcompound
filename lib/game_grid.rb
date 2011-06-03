@@ -1,13 +1,13 @@
 # grid
 
-class GameGrid
-
+class GameGrid 
+  attr_accessor :cursor
   @xsize = 0
   @ysize = 0
   @@tiles = Chingu::GameObjectList.new
   @@trees = Chingu::GameObjectList.new
   @@blocks = GameBlockList.new
-
+  @@workers = Chingu::GameObjectList.new
   def setup(xa, ya)
 
     @xsize = xa
@@ -64,8 +64,35 @@ class GameGrid
     
   end
   
+  def add_cursor
+    self.cursor = MapCursor.create(:x => 400, :y => 300, :image => Image["cursor.png"])
+    self.cursor.grid = self
+    
+  end
+  
+  
+  def add_worker
+    @@workers.add_game_object Worker.create(:x => 200, :y => 200, :image => Image["worker1.png"])
+  end
+  
+  def place_wall(coords)
+    wall = Wall.new(:x => coords[0]*20, :y => coords[1]*20, :image => "wall1.png")
+    b = @@blocks.block_at(coords)
+    b.add_fringe(wall)
+    
+  end
+  
+  def update
+    @@blocks.update
+    @@workers.update
+    self.cursor.update
+    
+  end
+  
   def draw
     @@blocks.draw
+    @@workers.draw
+    self.cursor.draw
   end
 
   def timed_tree_growth
