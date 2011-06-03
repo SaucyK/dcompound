@@ -9,10 +9,10 @@ class World < Chingu::GameState
 
     
     self.viewport.lag = 0                           # 0 = no lag, 0.99 = a lot of lag.
-    self.viewport.game_area = [10, 10, 2000, 2000]    # Viewport restrictions, full "game world/map/area"
+    self.viewport.game_area = [10, 10, GAME_X_SIZE * 20, GAME_Y_SIZE * 20]    # Viewport restrictions, full "game world/map/area"
     
     @gg = GameGrid.new
-    @gg.setup(100, 100)
+    @gg.setup(GAME_X_SIZE, GAME_Y_SIZE)
     @worker = Worker.create(:x => 200, :y => 200, :image => Image["worker1.png"])
     
     

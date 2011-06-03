@@ -17,10 +17,17 @@ class GameBlock < GameObject
   
   def add_fringe(fringe)
     @fringe = fringe
+    fringe.block = self
   end
   
   def add_actor(actor)
     @actor = actor
+  end
+  
+  def fringe_placeable?
+    return false unless @fringe.nil? # carry on if there's no fringe
+    return false unless @filling.nil?
+    return true
   end
   
   def passable?
@@ -42,10 +49,21 @@ class GameBlock < GameObject
     #@actor.draw unless @actor.nil?
     
     @floor.draw
+    @fringe.draw unless @fringe.nil?
+  end
+  
+  def to_s
+    lol = ""
+    lol += "Block at => [#{self.x},#{self.y}]:\n"
+    lol += "\t has floor? "
+    lol += @floor.nil? ? "N\n" : "Y\n"
+    lol += "\t has fringe? "
+    lol += @fringe.nil? ? "N\n" : "Y\n"
+    return lol
   end
   
   def self.generate(x, y, floor)
-    instance = self.create(:x => x, :y => y)
+    instance = self.create(:x => x*20, :y => y*20)
     instance.add_floor floor
     return instance
     

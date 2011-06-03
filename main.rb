@@ -6,13 +6,17 @@ include Chingu
 ROOT_PATH = File.dirname(File.expand_path(__FILE__))
 
 require ROOT_PATH + '/lib/world'
-require ROOT_PATH + "/lib/game_block" 
+#require ROOT_PATH + "/lib/game_block" 
+require ROOT_PATH + "/lib/game_block_list" 
 require ROOT_PATH + '/lib/game_grid'
 require ROOT_PATH + '/lib/tile'
+require ROOT_PATH + '/lib/tree'
 require ROOT_PATH + '/lib/map_cursor'
 require ROOT_PATH + '/lib/worker'
 require ROOT_PATH + "/lib/game_block" 
-require ROOT_PATH + "/lib/game_block_list" 
+
+GAME_X_SIZE = 100
+GAME_Y_SIZE = 100
 
 class Game < Chingu::Window
   
