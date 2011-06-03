@@ -1,5 +1,5 @@
 class Worker < GameObject
-
+  attr_accessor :task, :skills
   
   def setup
     @has_task = false
