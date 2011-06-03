@@ -6,11 +6,25 @@ class Tree < GameObject
     true
   end
   
-  def grow_tree_randomly
+  def grow_tree_randomly(all_trees)
+    
+    # find a free space
+    
     b = self.block
     
+    next_blocks = b.all_blocks.blocks_next_to(b)
+    new_trees = Array.new
+    next_blocks.each do |r|
+      if !r.nil? && r.fringe_placeable? && (rand(100) > 33) # 2/3 chance a a forest expanding from a particular tree
+         tree = Tree.new(:x => b.x, :y => b.y, :image => "tree1.png")
+         r.add_fringe(tree)
+         new_trees << tree
+       end
+    end
     
-    
+    new_trees.each do |t|
+      all_trees.add_game_object t
+    end
   end
   
   
@@ -19,7 +33,7 @@ class Tree < GameObject
     all_trees.each do |t| #expand current trees by 1 in each direction
       unless t.block.nil?
         all_blocks.blocks_next_to(t.block).each do |b|
-           if !b.nil? && b.fringe_placeable? && (rand(100) > 33)
+           if !b.nil? && b.fringe_placeable? && (rand(100) > 33) # 2/3 chance a a forest expanding from a particular tree
              tree = Tree.new(:x => b.x, :y => b.y, :image => "tree1.png")
              b.add_fringe(tree)
              new_trees << tree
@@ -28,7 +42,7 @@ class Tree < GameObject
       end
     end
     num = rand(8)
-    num.times do 
+    num.times do  # seed new trees
       x = rand(GAME_X_SIZE)
       y = rand(GAME_Y_SIZE) 
       
@@ -47,4 +61,16 @@ class Tree < GameObject
         
   end
 
+  def self.random_trees(all_trees, number)
+    ob = all_trees.of_class(Tree)
+    
+    if ob.size <= number
+      return ob
+    end
+    
+   ob.shuffle!
+   return ob[0..number]
+    
+    
+  end
 end

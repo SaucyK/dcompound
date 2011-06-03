@@ -21,7 +21,7 @@ GAME_Y_SIZE = 100
 class Game < Chingu::Window
   
   def initialize
-    super 890,590
+    super 880,580
     self.caption = "Drug Compound"
     self.input = {:escape => :exit}
     retrofy

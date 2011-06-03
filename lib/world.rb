@@ -24,6 +24,8 @@ class World < Chingu::GameState
     self.input = {
       :m => :toggle_music,
     }
+    
+    every(5000) { @gg.timed_tree_growth }
     super
   end
   

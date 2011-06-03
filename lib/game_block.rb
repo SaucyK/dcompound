@@ -5,7 +5,7 @@ class GameBlock < GameObject
   # filling - rock / dirt / water
   # fringe - trees / chests / doors
   # actor - workers
-  
+  attr_accessor :all_blocks
   
   def add_floor(tile)
     @floor = tile

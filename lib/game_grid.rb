@@ -1,6 +1,7 @@
 # grid
 
 class GameGrid
+
   @xsize = 0
   @ysize = 0
   @@tiles = Chingu::GameObjectList.new
@@ -27,6 +28,7 @@ class GameGrid
         #puts block.to_s
         #puts "\n\n"
         @@blocks.add_block block
+        block.all_blocks = @@blocks
         #puts "laid turf: "
         #puts @@blocks.block_at([xc,yc]).to_s
 
@@ -66,7 +68,11 @@ class GameGrid
     @@blocks.draw
   end
 
-
+  def timed_tree_growth
+    Tree.random_trees(@@trees, 100).each do |t|
+      t.grow_tree_randomly(@@trees)
+    end
+  end
 
   
   
