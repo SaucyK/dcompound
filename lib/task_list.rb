@@ -4,7 +4,7 @@ class TaskList
   end
   
   def add_task(task)
-    @tasks < task
+    @tasks << task
   
   end
 end

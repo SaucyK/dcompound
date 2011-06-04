@@ -21,8 +21,8 @@ class ContextMenu < Chingu::GameState
     @selected_item_name.y = @center_y
     @menu_options = ContextMenuArray.new
     
-    
-    @cursor = GameObject.create(:image => Image["cursor.png"])
+    @bg = GameObject.create(:x => @center_x, :y => @center_y, :image => Image["bg_menu.png"])
+    @cursor = GameObject.create(:image => Image["menu_cursor.png"])
     
 
   end
@@ -70,6 +70,9 @@ class ContextMenu < Chingu::GameState
   
   def draw
     #puts "drawing menu"
+    previous_game_state.draw
+    $window.flush
+    @bg.draw
     
     @menu_options.each do |o|
       o.draw

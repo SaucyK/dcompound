@@ -56,11 +56,11 @@ class World < Chingu::GameState
 
   
   def draw
-    if @menu
-      @menu.draw
-    else
+    #if @menu
+    #  @menu.draw
+    #else
       @gg.draw
-    end
+    #end
     #@gg.draw
     #@menu.draw if @menu
     super
