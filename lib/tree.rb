@@ -73,4 +73,14 @@ class Tree < GameObject
     
     
   end
+  
+  def self.menu_options
+    puts "grabbing tree options"
+    
+    opts = []
+    opts << ContextMenuOption.generate("icon_axe.png", "Chop Tree")
+    opts << ContextMenuOption.generate("icon_cancel.png","Cancel")
+
+    return opts
+  end
 end

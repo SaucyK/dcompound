@@ -7,40 +7,62 @@ class World < Chingu::GameState
   
   def setup
 
+    if(@menu)
+      @menu = nil
+      
+    else #no menu
+      self.viewport.lag = 0.99                           # 0 = no lag, 0.99 = a lot of lag.
+      self.viewport.game_area = [10, 10, GAME_X_SIZE * 20, GAME_Y_SIZE * 20]    # Viewport restrictions, full "game world/map/area"
     
-    self.viewport.lag = 0                           # 0 = no lag, 0.99 = a lot of lag.
-    self.viewport.game_area = [10, 10, GAME_X_SIZE * 20, GAME_Y_SIZE * 20]    # Viewport restrictions, full "game world/map/area"
-    
-    @gg = GameGrid.new
-    @gg.setup(GAME_X_SIZE, GAME_Y_SIZE)
-    #@worker = 
+      @gg = GameGrid.new
+      @gg.setup(GAME_X_SIZE, GAME_Y_SIZE)
+      #@worker = 
     
     
-   # @cursor = 
+     # @cursor = 
     
-    @gg.add_cursor()
-    @gg.add_worker()
-    @music = Song["chilled1.mp3"]
+      @gg.add_cursor()
+      @gg.add_worker()
+      @music = Song["chilled1.mp3"]
     
 
-    self.input = {
-      :m => :toggle_music,
-    }
+      self.input = {
+        :m => :toggle_music,
+        :a => :show_menu
+      }
     
-    every(120000) { @gg.timed_tree_growth }
-    super
+      #menu
+    
+    
+      every(120000) { @gg.timed_tree_growth }
+      super
+    end
   end
   
   def update
-    @gg.update
+    #@gg.update
+
     #@worker.set_target(@cursor.get_target) if @cursor.target_available? == true
-    self.viewport.center_around (@gg.cursor)
+    if @menu
+      @menu.update if @menu
+    else
+      @gg.update
+      self.viewport.center_around (@gg.cursor)
+    end 
+    
     super
   end
   
-  def draw
 
-    @gg.draw
+  
+  def draw
+    if @menu
+      @menu.draw
+    else
+      @gg.draw
+    end
+    #@gg.draw
+    #@menu.draw if @menu
     super
   end
   
@@ -52,5 +74,13 @@ class World < Chingu::GameState
       end
   end
   
+  def show_menu
+    unless @menu
+      @menu = ContextMenu.new
+      @menu.add_options Tree.menu_options()
+      push_game_state @menu
+    end
+    
+  end
   
 end

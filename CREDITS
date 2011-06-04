@@ -1,8 +1,14 @@
+Designed and coded mostly by SaucyK.
+
 Drug Compound is built on top of the following libraries:
 
 Gosu Lib: http://libgosu.org/
 Chingu: https://github.com/erisdiscord/gosu-ring
 
 
+Special thanks to:
 
-Thanks to everyone that has contributed either directly or indirectly!
+Erisdiscord for the gosu-ring menu. I couldn't get it to work so I built my own but I heavily drew on gosu-ring for development, especially the ContextMenuArray class.
+
+
+Thanks to everyone else that has contributed either directly or indirectly!
