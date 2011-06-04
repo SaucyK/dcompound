@@ -74,11 +74,11 @@ class Tree < GameObject
     
   end
   
-  def self.menu_options
+  def menu_options
     puts "grabbing tree options"
     
     opts = []
-    opts << ContextMenuOption.generate("icon_axe.png", "Chop Tree")
+    opts << ContextMenuOption.generate("icon_axe.png", "Chop Tree",:target => self, :action => "chop")
     opts << ContextMenuOption.generate("icon_cancel.png","Cancel")
 
     return opts

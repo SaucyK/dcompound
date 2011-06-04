@@ -3,7 +3,7 @@
 
 class World < Chingu::GameState
   traits :viewport, :timer
-
+  
   
   def setup
 
@@ -32,8 +32,11 @@ class World < Chingu::GameState
       }
     
       #menu
-    
-    
+      
+      @all_tasks = TaskList.new
+      @debug_text = Chingu::Text.new('', :size => 20)
+      @debug_text.x = 30
+      @debug_text.y = 30
       every(120000) { @gg.timed_tree_growth }
       super
     end
@@ -41,7 +44,7 @@ class World < Chingu::GameState
   
   def update
     #@gg.update
-
+    @debug_text.text = @gg.block_at(@gg.cursor.block_coords()).to_s
     #@worker.set_target(@cursor.get_target) if @cursor.target_available? == true
     if @menu
       @menu.update if @menu
@@ -60,6 +63,7 @@ class World < Chingu::GameState
     #  @menu.draw
     #else
       @gg.draw
+      @debug_text.draw
     #end
     #@gg.draw
     #@menu.draw if @menu
@@ -76,11 +80,20 @@ class World < Chingu::GameState
   
   def show_menu
     unless @menu
-      @menu = ContextMenu.new
-      @menu.add_options Tree.menu_options()
-      push_game_state @menu
+      
+      options = @gg.block_at(@gg.cursor.block_coords()).menu_options
+      unless options == false
+        @menu = ContextMenu.new
+        @menu.add_options options
+        @menu.holder = self
+        push_game_state @menu if @menu.menu_options.size > 0
+      end
     end
     
+  end
+  
+  def add_task_from_menu(task)
+    @all_tasks.add_task task
   end
   
 end

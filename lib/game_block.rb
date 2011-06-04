@@ -64,6 +64,14 @@ class GameBlock < GameObject
     return lol
   end
   
+  def menu_options
+    return @actor.menu_options if @actor && @actor.respond_to?("menu_options")
+    return @fringe.menu_options if @fringe && @fringe.respond_to?("menu_options")
+    return @filling.menu_options if @filling && @filling.respond_to?("menu_options")
+    return @floor.menu_options if @floor && @floor.respond_to?("menu_options")
+    return false
+  end
+  
   def self.generate(x, y, floor)
     instance = self.create(:x => x*20, :y => y*20)
     instance.add_floor floor
@@ -71,6 +79,7 @@ class GameBlock < GameObject
     
     
   end
+  
   
   
 end

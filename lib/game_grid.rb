@@ -8,6 +8,11 @@ class GameGrid
   @@trees = Chingu::GameObjectList.new
   @@blocks = GameBlockList.new
   @@workers = Chingu::GameObjectList.new
+  
+  def block_at(coords)
+    return @@blocks.block_at(coords)
+  end
+  
   def setup(xa, ya)
     
 

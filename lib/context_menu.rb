@@ -1,5 +1,5 @@
 class ContextMenu < Chingu::GameState
-  attr_accessor :radius, :pointer, :menu_options
+  attr_accessor :radius, :pointer, :menu_options, :holder
 
   
   def initialize
@@ -90,6 +90,8 @@ class ContextMenu < Chingu::GameState
   
   def add_options(new_options)
     #puts "adding options to menu"
+    return false if new_options == false
+    
     new_options.each do |o| 
       @menu_options << o
       #puts "added option to menu"
@@ -97,7 +99,11 @@ class ContextMenu < Chingu::GameState
   end
   
   def select
-  
+    unless @menu_options.first.action == "cancel"
+      @holder.add_task_from_menu @menu_options.first
+    end
+    
+    close_menu
   end
   
   def turn_left 
