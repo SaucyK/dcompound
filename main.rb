@@ -15,6 +15,7 @@ require ROOT_PATH + '/lib/tile'
 require ROOT_PATH + '/lib/tree'
 require ROOT_PATH + '/lib/wall'
 require ROOT_PATH + '/lib/map_cursor'
+require ROOT_PATH + '/lib/path_find'
 require ROOT_PATH + '/lib/worker'
 require ROOT_PATH + "/lib/game_block" 
 require ROOT_PATH + "/lib/task_list"

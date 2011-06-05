@@ -22,7 +22,14 @@ class World < Chingu::GameState
      # @cursor = 
     
       @gg.add_cursor()
-      @gg.add_worker()
+      
+      5.times do |num|
+        x = 5 + num
+        y = 5 + num
+        
+        @gg.add_worker(x,y)
+      end
+      
       @music = Song["chilled1.mp3"]
     
 
@@ -51,7 +58,19 @@ class World < Chingu::GameState
     else
       @gg.update
       self.viewport.center_around (@gg.cursor)
-    end 
+    end
+    
+    #assign tasks if available 
+    while @all_tasks.task_available?
+      @gg.all_workers.each do |worker|
+        if worker.needs_task?
+          puts "assigning task to worker"
+          worker.add_task(@all_tasks.get_task) 
+          break
+        end
+      
+      end #each worker
+    end #task available
     
     super
   end

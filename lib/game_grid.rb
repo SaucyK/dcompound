@@ -13,6 +13,10 @@ class GameGrid
     return @@blocks.block_at(coords)
   end
   
+  def all_workers
+    return @@workers
+  end
+  
   def setup(xa, ya)
     
 
@@ -79,8 +83,12 @@ class GameGrid
   end
   
   
-  def add_worker
-    @@workers.add_game_object Worker.create(:x => 200, :y => 200, :image => Image["worker1.png"])
+  def add_worker(x,y)
+    worker = Worker.create(:x => x*20, :y => y*20, :image => Image["worker1.png"])
+    worker.all_blocks = @@blocks
+    worker.add_to_block  @@blocks.block_at([x,y])
+    
+    @@workers.add_game_object worker
   end
   
   def place_wall(coords)

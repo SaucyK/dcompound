@@ -51,16 +51,14 @@ class ContextMenu < Chingu::GameState
       
       @cursor.x = @center_x + (@radius * Math.sin(rad)).round
       @cursor.y = @center_y + (@radius * Math.cos(rad)).round
-      
+    
+    
+ 
     @menu_options.each_with_index do |o,index|
       i = index+1
-
         target_angle = (i * angle) * (Math::PI/180)
-        
         o.x = @center_x + (@radius * Math.sin(target_angle)).round
         o.y = @center_y + (@radius * Math.cos(target_angle)).round
-        
-
     end
 
     #super

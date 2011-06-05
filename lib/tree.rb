@@ -74,6 +74,10 @@ class Tree < GameObject
     
   end
   
+  def block_coords
+    return self.block.block_coords
+  end
+  
   def menu_options
     puts "grabbing tree options"
     

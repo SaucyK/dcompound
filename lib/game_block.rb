@@ -1,11 +1,12 @@
 class GameBlock < GameObject
+
   # Layers
   # ---
   # floor - grass, dirt /stairs
   # filling - rock / dirt / water
   # fringe - trees / chests / doors
   # actor - workers
-  attr_accessor :all_blocks
+  attr_accessor :all_blocks, :d, :closed, :previous_cell
   
   def add_floor(tile)
     @floor = tile
@@ -31,8 +32,8 @@ class GameBlock < GameObject
   end
   
   def passable?
+    return false unless @filling.nil? #check filling first, it's quicker
     return false if !@fringe.nil? && !@fringe.passable?
-    return false unless @filling.nil?
     return true
   end
   
@@ -80,6 +81,23 @@ class GameBlock < GameObject
     
   end
   
+  def next_to?(ablock)
+    neighbours = self.all_blocks.blocks_next_to(self)
+    return true if neighbours.include? ablock
+    return false
+  end
   
+  def passable_neighbours
+    return self.all_blocks.passable_blocks_next_to(self).dup
+    
+  end
   
+  def guess_distance(tx, ty)
+    puts "guess_distance called!"
+    nx = self.x/20
+    ny = self.y/20
+    distance_guess = Math.sqrt(((tx-nx)**2)+((ty-ny)**2)) # sup pythagarus
+    return distance_guess
+    
+  end
 end

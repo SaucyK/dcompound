@@ -1,5 +1,5 @@
 class Task
-  attr_accessor :title, :icon, :action, :target
+  attr_accessor :title, :icon, :action, :target, :assignee
   
   
 end
