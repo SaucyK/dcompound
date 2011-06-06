@@ -58,10 +58,10 @@ class GameBlock < GameObject
   def to_s
     lol = ""
     lol += "Block at => [#{self.x},#{self.y}]:\n"
-    lol += "\t has floor? "
-    lol += @floor.nil? ? "N\n" : "Y\n"
-    lol += "\t has fringe? "
-    lol += @fringe.nil? ? "N\n" : "Y\n"
+    #lol += "\t has floor? "
+    #lol += @floor.nil? ? "N\n" : "Y\n"
+    #lol += "\t has fringe? "
+    #lol += @fringe.nil? ? "N\n" : "Y\n"
     return lol
   end
   
@@ -83,7 +83,16 @@ class GameBlock < GameObject
   
   def next_to?(ablock)
     neighbours = self.all_blocks.blocks_next_to(self)
-    return true if neighbours.include? ablock
+    #puts "grabbing neighbours: #{neighbours.size}"
+    neighbours.each do |n|
+      return true if n.same_place_as?(ablock) 
+      
+    end
+    return false
+  end
+  
+  def same_place_as?(ablock)
+    return true if (ablock.x == self.x) && (ablock.y == self.y)
     return false
   end
   
@@ -93,7 +102,7 @@ class GameBlock < GameObject
   end
   
   def guess_distance(tx, ty)
-    puts "guess_distance called!"
+    #puts "guess_distance called!"
     nx = self.x/20
     ny = self.y/20
     distance_guess = Math.sqrt(((tx-nx)**2)+((ty-ny)**2)) # sup pythagarus

@@ -17,6 +17,12 @@ class GameGrid
     return @@workers
   end
   
+  def update_workers
+    @@workers.each do |w|
+      w.update
+    end
+  end
+  
   def setup(xa, ya)
     
 
@@ -100,7 +106,7 @@ class GameGrid
   
   def update
     @@blocks.update
-    @@workers.update
+    #@@workers.update
     self.cursor.update
     
   end

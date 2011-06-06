@@ -45,6 +45,7 @@ class World < Chingu::GameState
       @debug_text.x = 30
       @debug_text.y = 30
       every(120000) { @gg.timed_tree_growth }
+      every(500) {@gg.update_workers}
       super
     end
   end

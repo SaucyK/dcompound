@@ -76,10 +76,11 @@ class GameBlockList < GameObjectList
     by = block.y/20
     ab = Array.new
     
+    
     # top left
-    unless bx <= 0 && by <= 0
-      ab << self.block_at([bx-1,by-1]) unless self.block_at([bx-1,by-1]).nil? || ab.include?(self.block_at([bx-1,by-1]).nil?) || !self.block_at([bx-1,by-1]).passable?
-    end  
+    #unless bx <= 0 && by <= 0
+    #  ab << self.block_at([bx-1,by-1]) unless self.block_at([bx-1,by-1]).nil? || ab.include?(self.block_at([bx-1,by-1]).nil?) || !self.block_at([bx-1,by-1]).passable?
+    #end  
     
     # top center
     unless by <= 0 
@@ -87,9 +88,9 @@ class GameBlockList < GameObjectList
     end
     
     # top right
-    unless by <= 0 and bx >= GAME_X_SIZE
-      ab << self.block_at([bx+1,by-1]) unless self.block_at([bx+1,by-1]).nil? || ab.include?(self.block_at([bx+1,by-1]).nil?) || !self.block_at([bx+1,by-1]).passable?
-    end
+    #unless by <= 0 and bx >= GAME_X_SIZE
+    #  ab << self.block_at([bx+1,by-1]) unless self.block_at([bx+1,by-1]).nil? || ab.include?(self.block_at([bx+1,by-1]).nil?) || !self.block_at([bx+1,by-1]).passable?
+   # end
     
     # center right
     unless bx >= GAME_X_SIZE
@@ -97,19 +98,19 @@ class GameBlockList < GameObjectList
     end
     
     # bottom right
-    unless by >= GAME_Y_SIZE &&  bx >= GAME_Y_SIZE
-      ab << self.block_at([bx+1,by+1]) unless self.block_at([bx+1,by+1]).nil? || ab.include?( self.block_at([bx+1,by+1]).nil?) || !self.block_at([bx+1,by+1]).passable?
-    end
+   # unless by >= GAME_Y_SIZE &&  bx >= GAME_Y_SIZE
+    #  ab << self.block_at([bx+1,by+1]) unless self.block_at([bx+1,by+1]).nil? || ab.include?( self.block_at([bx+1,by+1]).nil?) || !self.block_at([bx+1,by+1]).passable?
+   # end
     
     # bottom center
     unless by >= GAME_Y_SIZE
       ab << self.block_at([bx,by+1]) unless self.block_at([bx,by+1]).nil? || ab.include?( self.block_at([bx,by+1]).nil?) || !self.block_at([bx,by+1]).passable?
     end
     
-    # bottom left
-    unless by >= GAME_Y_SIZE && bx <= 0
-      ab << self.block_at([bx-1,by+1]) unless self.block_at([bx-1,by+1]).nil? || ab.include?( self.block_at([bx-1,by+1]).nil?) || !self.block_at([bx-1,by+1]).passable?
-    end
+  #  # bottom left
+   # unless by >= GAME_Y_SIZE && bx <= 0
+   #   ab << self.block_at([bx-1,by+1]) unless self.block_at([bx-1,by+1]).nil? || ab.include?( self.block_at([bx-1,by+1]).nil?) || !self.block_at([bx-1,by+1]).passable?
+   # end
     
     # center left
     unless bx <= 0
@@ -120,4 +121,13 @@ class GameBlockList < GameObjectList
     return ab
   end
   
+  
+  def reset_path_find
+    @block_holder.each do |holder|
+      b = holder[1]
+      b.closed = false if b.closed
+      b.d = nil if !b.d.nil?
+      
+    end
+  end
 end
