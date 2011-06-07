@@ -11,6 +11,8 @@ require ROOT_PATH + '/lib/world'
 
 require ROOT_PATH + "/lib/game_block_list" 
 require ROOT_PATH + '/lib/game_grid'
+
+
 require ROOT_PATH + '/lib/tile'
 require ROOT_PATH + '/lib/tree'
 require ROOT_PATH + '/lib/wall'
@@ -23,7 +25,9 @@ require ROOT_PATH + "/lib/game_block"
 require ROOT_PATH + "/lib/task_list"
 require ROOT_PATH + "/lib/task"
 require ROOT_PATH + "/lib/skill"
-
+require ROOT_PATH + '/lib/resource'
+require ROOT_PATH + '/lib/resources/wood'
+require ROOT_PATH + '/lib/tasks/chop'
 
 
 GAME_X_SIZE = 100
@@ -35,10 +39,11 @@ class Game < Chingu::Window
     super 880,580
     self.caption = "Drug Compound"
     self.input = {:escape => :exit}
-    retrofy
+    #retrofy
     assets_path = File.join(ROOT_PATH, "assets", "default")
     Gosu::Image.autoload_dirs << File.join(assets_path, "images")
     Gosu::Image.autoload_dirs << File.join(assets_path, "images","tiles")
+    Gosu::Image.autoload_dirs << File.join(assets_path, "images","tiles","resources")
     Gosu::Image.autoload_dirs << File.join(assets_path, "images","workers")
     Gosu::Image.autoload_dirs << File.join(assets_path, "images","ui")
     Gosu::Song.autoload_dirs << File.join(assets_path, "music")

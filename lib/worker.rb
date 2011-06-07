@@ -15,11 +15,18 @@ class Worker < GameObject
   def add_task(new_task)
     
     @task = new_task
+    @task.assignee = self
     @all_blocks.reset_path_find
+    
     @path = new_find_path_to(self.block, @task.target.block)
-
+    
+   
     @has_task = true
     #puts "task assigned to worker"
+  end
+  
+  def skill_at(klass)
+    return 10
   end
   
   def set_target(coords)
@@ -82,13 +89,19 @@ class Worker < GameObject
 
   end
   
+  def perform_task
+    return @task.perform_task
+  end
+  
   def update
     unless @has_task == false
 
       if at_target?
 
         
-        complete_task
+        if perform_task==true
+          complete_task
+        end
       else
 
         unless @path.nil? || @path.size == 0

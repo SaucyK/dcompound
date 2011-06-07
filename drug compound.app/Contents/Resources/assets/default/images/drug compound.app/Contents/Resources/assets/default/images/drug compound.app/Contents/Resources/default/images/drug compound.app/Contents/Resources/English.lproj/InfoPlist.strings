@@ -1,0 +1,4 @@
+CFBundleName = "drug compound";
+CFBundleShortVersionString = "1.0";
+CFBundleGetInfoString = "drug compound version 1.0 Copyright 2011 Dave K";
+NSHumanReadableCopyright = "Copyright 2011 Dave K.";

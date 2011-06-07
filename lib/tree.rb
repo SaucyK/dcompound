@@ -74,6 +74,8 @@ class Tree < GameObject
     
   end
   
+  
+  
   def block_coords
     return self.block.block_coords
   end
@@ -82,7 +84,7 @@ class Tree < GameObject
     puts "grabbing tree options"
     
     opts = []
-    opts << ContextMenuOption.generate("icon_axe.png", "Chop Tree",:target => self, :action => "chop")
+    opts << ContextMenuOption.generate("icon_axe.png", "Chop Tree",:target => self, :action => Chop)
     opts << ContextMenuOption.generate("icon_cancel.png","Cancel")
 
     return opts

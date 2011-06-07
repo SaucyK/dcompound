@@ -1,4 +1,4 @@
-
+require 'fiber'
 # World
 
 class World < Chingu::GameState
@@ -61,17 +61,22 @@ class World < Chingu::GameState
       self.viewport.center_around (@gg.cursor)
     end
     
-    #assign tasks if available 
-    while @all_tasks.task_available?
-      @gg.all_workers.each do |worker|
-        if worker.needs_task?
-          #puts "assigning task to worker"
-          worker.add_task(@all_tasks.get_task) 
-          break
-        end
+    #assign tasks if available
+    if @all_tasks.task_available? 
+      @all_tasks.tasks.each do |task|
+        @gg.all_workers.each do |worker|
+          if worker.needs_task?
+            #puts "assigning task to worker"
+            new_task = @all_tasks.get_task
+            worker.add_task(new_task) unless new_task == false
+            break
+          end
       
-      end #each worker
-    end #task available
+        end #each worker
+      end #task available
+    end
+    
+  
     
     super
   end

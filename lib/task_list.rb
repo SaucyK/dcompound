@@ -1,10 +1,11 @@
 class TaskList
+  attr_accessor :tasks
   def initialize
     @tasks = Array.new
   end
   
   def add_task(task)
-    new_task = Task.new
+    new_task = task.action.new
     new_task.action = task.action
     new_task.title = task.title
     new_task.target = task.target

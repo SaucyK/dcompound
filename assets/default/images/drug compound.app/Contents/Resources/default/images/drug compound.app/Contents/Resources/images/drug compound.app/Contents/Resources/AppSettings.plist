@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AppPathAsFirstArg</key>
+	<false/>
+	<key>Creator</key>
+	<string>Platypus-4.4</string>
+	<key>Droppable</key>
+	<false/>
+	<key>InterpreterParams</key>
+	<array/>
+	<key>OutputType</key>
+	<string>Progress Bar</string>
+	<key>RemainRunningAfterCompletion</key>
+	<true/>
+	<key>RequiresAdminPrivileges</key>
+	<false/>
+	<key>ScriptInterpreter</key>
+	<string>/usr/bin/ruby</string>
+	<key>Secure</key>
+	<true/>
+	<key>TextBackground</key>
+	<string>#ffffff</string>
+	<key>TextEncoding</key>
+	<integer>4</integer>
+	<key>TextFont</key>
+	<string>Monaco</string>
+	<key>TextForeground</key>
+	<string>#000000</string>
+	<key>TextSettings</key>
+	<data>
+	YnBsaXN0MDDUAQIDBAUICwxUJHRvcFgkb2JqZWN0c1gkdmVyc2lvblkkYXJjaGl2ZXLR
+	BgdUcm9vdIABogkKVSRudWxsTxEGWHJlcXVpcmUgJ3J1YnlnZW1zJwpyZXF1aXJlICdi
+	dW5kbGVyL3NldHVwJwpCdW5kbGVyLnJlcXVpcmUKaW5jbHVkZSBHb3N1CmluY2x1ZGUg
+	Q2hpbmd1ClJPT1RfUEFUSCA9IEZpbGUuZGlybmFtZShGaWxlLmV4cGFuZF9wYXRoKF9f
+	RklMRV9fKSkKCnJlcXVpcmUgUk9PVF9QQVRIICsgIi9saWIvY29udGV4dF9tZW51IiAK
+	cmVxdWlyZSBST09UX1BBVEggKyAiL2xpYi9jb250ZXh0X21lbnVfb3B0aW9uIgpyZXF1
+	aXJlIFJPT1RfUEFUSCArICcvbGliL3dvcmxkJwoKcmVxdWlyZSBST09UX1BBVEggKyAi
+	L2xpYi9nYW1lX2Jsb2NrX2xpc3QiIApyZXF1aXJlIFJPT1RfUEFUSCArICcvbGliL2dh
+	bWVfZ3JpZCcKcmVxdWlyZSBST09UX1BBVEggKyAnL2xpYi90aWxlJwpyZXF1aXJlIFJP
+	T1RfUEFUSCArICcvbGliL3RyZWUnCnJlcXVpcmUgUk9PVF9QQVRIICsgJy9saWIvd2Fs
+	bCcKcmVxdWlyZSBST09UX1BBVEggKyAnL2xpYi9tYXBfY3Vyc29yJwpyZXF1aXJlIFJP
+	T1RfUEFUSCArICcvbGliL3BhdGhfZmluZCcgIyBmb3IgIGFfc3RhcgpyZXF1aXJlIFJP
+	T1RfUEFUSCArICcvbGliL3dvcmtlcicKcmVxdWlyZSBST09UX1BBVEggKyAnL2xpYi9u
+	b2RlJyAjIGZvciBhLXN0YXIKcmVxdWlyZSBST09UX1BBVEggKyAnL2xpYi9ub2RlX3F1
+	ZXVlJyAjIGZvciBhLXN0YXIKcmVxdWlyZSBST09UX1BBVEggKyAiL2xpYi9nYW1lX2Js
+	b2NrIiAKcmVxdWlyZSBST09UX1BBVEggKyAiL2xpYi90YXNrX2xpc3QiCnJlcXVpcmUg
+	Uk9PVF9QQVRIICsgIi9saWIvdGFzayIKcmVxdWlyZSBST09UX1BBVEggKyAiL2xpYi9z
+	a2lsbCIKCgoKR0FNRV9YX1NJWkUgPSAxMDAKR0FNRV9ZX1NJWkUgPSAxMDAKCmNsYXNz
+	IEdhbWUgPCBDaGluZ3U6OldpbmRvdwogIAogIGRlZiBpbml0aWFsaXplCiAgICBzdXBl
+	ciA4ODAsNTgwCiAgICBzZWxmLmNhcHRpb24gPSAiRHJ1ZyBDb21wb3VuZCIKICAgIHNl
+	bGYuaW5wdXQgPSB7OmVzY2FwZSA9PiA6ZXhpdH0KICAgICNyZXRyb2Z5CiAgICBhc3Nl
+	dHNfcGF0aCA9IEZpbGUuam9pbihST09UX1BBVEgsICJhc3NldHMiLCAiZGVmYXVsdCIp
+	CiAgICBHb3N1OjpJbWFnZS5hdXRvbG9hZF9kaXJzIDw8IEZpbGUuam9pbihhc3NldHNf
+	cGF0aCwgImltYWdlcyIpCiAgICBHb3N1OjpJbWFnZS5hdXRvbG9hZF9kaXJzIDw8IEZp
+	bGUuam9pbihhc3NldHNfcGF0aCwgImltYWdlcyIsInRpbGVzIikKICAgIEdvc3U6Oklt
+	YWdlLmF1dG9sb2FkX2RpcnMgPDwgRmlsZS5qb2luKGFzc2V0c19wYXRoLCAiaW1hZ2Vz
+	IiwidGlsZXMiLCJyZXNvdXJjZXMiKQogICAgR29zdTo6SW1hZ2UuYXV0b2xvYWRfZGly
+	cyA8PCBGaWxlLmpvaW4oYXNzZXRzX3BhdGgsICJpbWFnZXMiLCJ3b3JrZXJzIikKICAg
+	IEdvc3U6OkltYWdlLmF1dG9sb2FkX2RpcnMgPDwgRmlsZS5qb2luKGFzc2V0c19wYXRo
+	LCAiaW1hZ2VzIiwidWkiKQogICAgR29zdTo6U29uZy5hdXRvbG9hZF9kaXJzIDw8IEZp
+	bGUuam9pbihhc3NldHNfcGF0aCwgIm11c2ljIikKICAgIHN3aXRjaF9nYW1lX3N0YXRl
+	KFdvcmxkKQogICAgCiAgZW5kCiAgCiAgCiAgZGVmIHVwZGF0ZQoKICAgIHN1cGVyCiAg
+	ZW5kCiAgCiAgZGVmIGRyYXcKCiAgICBzdXBlcgogIGVuZAogIAogIAplbmQKCgoKCgoK
+	CkdhbWUubmV3LnNob3cSAAGGoF8QD05TS2V5ZWRBcmNoaXZlcgAIABEAFgAfACgAMgA1
+	ADoAPAA/AEUGoQamAAAAAAAAAgEAAAAAAAAADQAAAAAAAAAAAAAAAAAABrg=
+	</data>
+	<key>TextSize</key>
+	<real>10</real>
+</dict>
+</plist>
