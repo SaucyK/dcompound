@@ -16,7 +16,8 @@ class Worker < GameObject
     
     @task = new_task
     @all_blocks.reset_path_find
-    @path = find_path_to(new_task.target.block.block_coords)
+    @path = new_find_path_to(self.block, @task.target.block)
+
     @has_task = true
     #puts "task assigned to worker"
   end
@@ -43,24 +44,23 @@ class Worker < GameObject
   end
   
   def at_target?
-    return false if @path.nil? || @path.last.nil? 
-    #puts "checking if #{@block} is next to #{@path.last}"
-    return true if @block.next_to?(@path.last)
+    return false if @task.target.block.nil?
+
+    return true if @block.next_to?(@task.target.block)
     return false  
   end
   
   def complete_task
-    puts "resetting everything"
+
     @task = nil
     @has_task = false
     @path = nil
   end
   
   def move_to_next_path_node
-    #puts "worker is moving...."
-    new_place = @path.last
-   # puts "...to #{@path.first}..."
-   puts "right then, moving from #{block} to #{new_place}"
+
+    new_place = @path.pop
+
      
    
     if new_place.x > @x
@@ -76,27 +76,27 @@ class Worker < GameObject
       @y -= 20 if new_place.y < @y
     end
 
-    @path.delete_at(0)
+    
     add_to_block new_place
     @block = @all_blocks.block_at(block_coords)
-    #puts "...and has arrived!"
+
   end
   
   def update
     unless @has_task == false
-     # "ok, woker has a task let's do this shit"
+
       if at_target?
-       # puts "worker at destination"
+
         
         complete_task
       else
-        #puts "worker isn't there yet"
-        if @path.size > 0
-          #puts "worker has places to be"
+
+        unless @path.nil? || @path.size == 0
+
           move_to_next_path_node
         else
-          #{}"worker doesn't know how to get there yet"
-          @path = find_path_to(@task.target.block_coords)
+
+          @path = new_find_path_to(self.block, @task.target.block)
           move_to_next_path_node
         end
         

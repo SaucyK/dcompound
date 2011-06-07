@@ -1,5 +1,5 @@
 class GameBlock < GameObject
-
+  include Node
   # Layers
   # ---
   # floor - grass, dirt /stairs
@@ -97,7 +97,7 @@ class GameBlock < GameObject
   end
   
   def passable_neighbours
-    return self.all_blocks.passable_blocks_next_to(self).dup
+    return self.all_blocks.passable_blocks_next_to(self).dup # dup
     
   end
   

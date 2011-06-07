@@ -15,8 +15,10 @@ require ROOT_PATH + '/lib/tile'
 require ROOT_PATH + '/lib/tree'
 require ROOT_PATH + '/lib/wall'
 require ROOT_PATH + '/lib/map_cursor'
-require ROOT_PATH + '/lib/path_find'
+require ROOT_PATH + '/lib/path_find' # for  a_star
 require ROOT_PATH + '/lib/worker'
+require ROOT_PATH + '/lib/node' # for a-star
+require ROOT_PATH + '/lib/node_queue' # for a-star
 require ROOT_PATH + "/lib/game_block" 
 require ROOT_PATH + "/lib/task_list"
 require ROOT_PATH + "/lib/task"

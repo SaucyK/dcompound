@@ -105,14 +105,14 @@ class ContextMenu < Chingu::GameState
   end
   
   def turn_left 
-    puts "turning left"
+    #puts "turning left"
     @menu_options.rotate! +1
 
     @selected_item_name.text = @menu_options.first.title
   end
   
   def turn_right
-    puts "turning right"
+    #puts "turning right"
     @menu_options.rotate! -1
 
     @selected_item_name.text = @menu_options.first.title

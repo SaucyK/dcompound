@@ -1,56 +1,72 @@
 module PathFind
   
-  def find_path_to(coords)
-    #puts "ok, this is the hard part."
-    @tx = coords[0]
-    @ty = coords[1]
-    
-    start = @block.dup #d
-    goal = @block.all_blocks.block_at([@tx,@ty]).dup #d
-    puts "finding path from #{start} to #{goal}"
-    #puts "start and end points determined"
-    
-    start.d = guess_distance(@tx,@ty)
-   # puts "distance guessed. #{start.d} btw"
-    block_set = [start]
-   # puts "block set started"
-    while block_set.size > 0
-      puts "block set is currently #{block_set.size} in size"
-      #puts "ok there's still shit to do in the block set"
-      block_set.sort! { |a,b| a.d <=> b.d}
-      #puts "block set sorted"
-      next_node = block_set[0].dup #d
-      #puts "next node determined"
+  
+  def new_find_path_to(start, goal)
+    it_count = 0
+    open = NodeQueue.new
+    closed = NodeQueue.new
+    start.calc_h(goal)
+    open.push(start)
+
+    start.g = 10 
+    while !open.empty? do
+      it_count += 1
+      current_node = open.find_best
       
-      
-      #puts "is path ready?"
-      return build_path(goal) if (next_node.x == goal.x) && (next_node.y == goal.y)
-      #puts "nope!"
-      
-      block_set.delete_at(0)
-      next_node.closed = true
-      #puts "old block disregarded"
-      
-      next_node.passable_neighbours.each do |node|
-        #puts "getting next node"
-        unless block_set.include? node
-         # puts "block no in block set"
-          node.previous_cell = next_node
-         # puts "previous cell set"
-          node.d = node.guess_distance(@tx, @ty)
-         # puts "guessing distance of new node: #{node.d}"
-          block_set << node
-         # puts "node added to block set"
-        else
-         # puts "block is already in the block set"
-        end
-        
+      if current_node.same_as?(goal)  #solution
+        #puts "Total count: #{it_count}"
+        return complete_path(current_node, start)
       end
+      
+      current_node.passable_neighbours.each do |next_node|
+        next_node.calc_g(current_node)
+        if open_successor=open.find(next_node)
+          if open_successor<=next_node
+            next
+          end
+        end
+        if closed_successor=closed.find(next_node)
+          if closed_successor<=next_node
+            next
+          end
+        end
+      
+      
+        open.remove(next_node)
+        closed.remove(next_node)
+      
+        next_node.parent = current_node
+        
+        next_node.calc_h(goal)
+      
+        open.push(next_node)
+      end #neighbours.eahc
+      
+      closed.push(current_node)
+    
+    end #while !open.empty
+    
+    
+  end
+  
+  def complete_path(end_node, start)
+    new_path = Array.new
+    
+    #puts "bulding complete path to #{end_node}"
+    new_path << end_node
+    next_node = end_node.parent
+    until next_node==start do
+      #puts "adding #{next_node}"
+      new_path << next_node
+      next_node=next_node.parent
     end
     
-    #puts "no path :("
-    return false #no path
+    #puts "path building compelte"
+    
+    return new_path
   end
+  
+
   
   def build_path(end_point)
    # puts "hooray! building path"
@@ -75,7 +91,8 @@ module PathFind
     #puts "guess_distance called!"
     nx = self.x/20
     ny = self.y/20
-    distance_guess = Math.sqrt(((tx-nx)**2)+((ty-ny)**2)) # sup pythagarus
+    #distance_guess = Math.sqrt(((tx-nx)**2)+((ty-ny)**2)) # sup pythagarus
+    distance_guess = (tx-nx).abs+(ty-ny).abs
     return distance_guess
     
   end

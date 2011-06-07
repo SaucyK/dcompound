@@ -65,7 +65,7 @@ class World < Chingu::GameState
     while @all_tasks.task_available?
       @gg.all_workers.each do |worker|
         if worker.needs_task?
-          puts "assigning task to worker"
+          #puts "assigning task to worker"
           worker.add_task(@all_tasks.get_task) 
           break
         end
