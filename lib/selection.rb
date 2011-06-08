@@ -8,13 +8,29 @@ class Selection < GameObject
     
   end
   
+  def in_selection?(coords)
+    ax = coords[0]*20
+    ay = coords[1]*20
+    @blocks.each do |b|
+      return true if (b.x==ax) && (b.y==ay)
+    end
+    return false 
+  end
+  
   def menu_options #do this next
     return false
   end
   
   def clear_selection
-    @display.each do |d|
-      d.destroy!
+    unless @display.nil?
+      @display.each do |d|
+        d.destroy! unless d.nil?
+      end
+    else
+      @blocks = nil
+      @corner1 = nil
+      @corner2 = nil
+      
     end
   end
   

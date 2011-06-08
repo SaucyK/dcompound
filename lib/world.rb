@@ -128,12 +128,18 @@ class World < Chingu::GameState
   
   def show_menu
     unless @menu
-      if @selection
+      if @selection && @selection.corner2 && @selection.in_selection?(@gg.cursor.block_coords)
         
         options = @selection.menu_options
       else
         options = @gg.block_at(@gg.cursor.block_coords()).menu_options
-
+        #if @selection
+          @selection.corner1 = nil
+          @selection.corner2 = nil
+          @selection.clear_selection
+          @selection.destroy!
+          @selection = nil
+        #end
       end
       
       unless options == false
