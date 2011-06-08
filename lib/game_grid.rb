@@ -17,6 +17,10 @@ class GameGrid
     return @@workers
   end
   
+  def all_blocks
+    return @@blocks
+  end
+  
   def update_workers
     @@workers.each do |w|
       w.update

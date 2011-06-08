@@ -1,5 +1,5 @@
 class TaskList
-  attr_accessor :tasks
+  attr_accessor :tasks, :world
   def initialize
     @tasks = Array.new
   end
@@ -9,6 +9,8 @@ class TaskList
     new_task.action = task.action
     new_task.title = task.title
     new_task.target = task.target
+    new_task.target.selected = true if new_task.target.respond_to?("selected?")
+    new_task.parent = self
     @tasks.push new_task
     puts "added task: #{new_task.title}"
   end

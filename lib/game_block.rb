@@ -21,6 +21,11 @@ class GameBlock < GameObject
     @fringe.block = self
   end
   
+  def remove_fringe
+    @fringe.block = nil
+    @fringe = nil
+  end
+  
   def add_actor(actor)
     @actor = actor
   end
@@ -41,6 +46,14 @@ class GameBlock < GameObject
     return [self.x/20,self.y/20]
   end
   
+  def anything_selected?
+    return true if @actor && @actor.respond_to?("selected?") && @actor.selected?
+    return true if @fringe && @fringe.respond_to?("selected?") && @fringe.selected?
+    return true if @filling && @filling.respond_to?("selected?") && @filling.selected?
+    return true if @floor && @floor.respond_to?("selected?") && @floor.selected?
+    return false
+  end
+  
   def draw
     #if @filling.nil?
     #  @floor.draw
@@ -53,15 +66,29 @@ class GameBlock < GameObject
     
     @floor.draw
     @fringe.draw unless @fringe.nil?
+    if anything_selected?
+      draw_selected
+    else
+      @selected.destroy! unless @selected.nil?
+      @selected = nil unless @selected.nil?
+    end
+  end
+  
+  def draw_selected
+    unless @selected
+      @selected = GameObject.create(:image => Image["selected.png"], :x => self.x, :y => self.y)
+    end
+    @selected.draw
+    
   end
   
   def to_s
     lol = ""
     lol += "Block at => [#{self.x},#{self.y}]:\n"
     #lol += "\t has floor? "
-    #lol += @floor.nil? ? "N\n" : "Y\n"
+    #lol += @floor ? "N\n" : "Y\n"
     #lol += "\t has fringe? "
-    #lol += @fringe.nil? ? "N\n" : "Y\n"
+    #lol += @fringe ? "N\n" : "Y\n"
     return lol
   end
   

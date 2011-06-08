@@ -35,7 +35,8 @@ class World < Chingu::GameState
 
       self.input = {
         :m => :toggle_music,
-        :a => :show_menu
+        :a => :show_menu,
+        :lshift => :handle_selection
       }
     
       #menu
@@ -81,7 +82,25 @@ class World < Chingu::GameState
     super
   end
   
-
+  def handle_selection
+    unless @selection.nil?
+      block = @gg.block_at(@gg.cursor.block_coords())
+      if @selection.corner2.nil? #select 2nd point
+        @selection.corner2 = block
+        @selection.process(@gg.all_blocks)
+      else #start new selection
+        @selection.clear_selection
+        @selection.destroy!
+        block = @gg.block_at(@gg.cursor.block_coords())
+        @selection = Selection.new
+        @selection.corner1 = block
+      end
+    else
+      block = @gg.block_at(@gg.cursor.block_coords())
+      @selection = Selection.new
+      @selection.corner1 = block
+    end
+  end
   
   def draw
     #if @menu
@@ -89,6 +108,10 @@ class World < Chingu::GameState
     #else
       @gg.draw
       @debug_text.draw
+      
+      if !@selection.nil? && !@selection.blocks.nil? && @selection.blocks.size > 0
+        @selection.draw
+      end
     #end
     #@gg.draw
     #@menu.draw if @menu
@@ -105,8 +128,14 @@ class World < Chingu::GameState
   
   def show_menu
     unless @menu
+      if @selection
+        
+        options = @selection.menu_options
+      else
+        options = @gg.block_at(@gg.cursor.block_coords()).menu_options
+
+      end
       
-      options = @gg.block_at(@gg.cursor.block_coords()).menu_options
       unless options == false
         @menu = ContextMenu.new
         @menu.add_options options

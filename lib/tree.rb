@@ -1,6 +1,6 @@
 class Tree < GameObject
   
-  attr_accessor :block
+  attr_accessor :block, :selected
   
   def passable?
     true
@@ -74,14 +74,17 @@ class Tree < GameObject
     
   end
   
-  
+  def selected?
+    return true if @selected == true
+    return false
+  end
   
   def block_coords
     return self.block.block_coords
   end
   
   def menu_options
-    puts "grabbing tree options"
+
     
     opts = []
     opts << ContextMenuOption.generate("icon_axe.png", "Chop Tree",:target => self, :action => Chop)

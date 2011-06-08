@@ -7,6 +7,7 @@ ROOT_PATH = File.dirname(File.expand_path(__FILE__))
 
 require ROOT_PATH + "/lib/context_menu" 
 require ROOT_PATH + "/lib/context_menu_option"
+require ROOT_PATH + "/lib/selection"
 require ROOT_PATH + '/lib/world'
 
 require ROOT_PATH + "/lib/game_block_list" 

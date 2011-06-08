@@ -15,7 +15,9 @@ class Chop < Task
   
   def task_complete
     block = @target.block
-    @target.destroy
+    block.remove_fringe
+    @target.selected = false
+    @target.destroy!
     wood = Wood.generate(block)
     block.add_fringe(wood)
   end
