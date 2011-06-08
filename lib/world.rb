@@ -142,7 +142,7 @@ class World < Chingu::GameState
         #end
       end
       
-      unless options == false
+      unless options == false || options.nil? || options.size <= 0
         @menu = ContextMenu.new
         @menu.add_options options
         @menu.holder = self
@@ -154,6 +154,11 @@ class World < Chingu::GameState
   
   def add_task_from_menu(task)
     @all_tasks.add_task task
+    if @selection
+      @selection.clear_selection
+      @selection.destroy!
+    end
+    
   end
   
 end

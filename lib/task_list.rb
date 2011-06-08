@@ -5,14 +5,31 @@ class TaskList
   end
   
   def add_task(task)
-    new_task = task.action.new
-    new_task.action = task.action
-    new_task.title = task.title
-    new_task.target = task.target
-    new_task.target.selected = true if new_task.target.respond_to?("selected?")
-    new_task.parent = self
-    @tasks.push new_task
-    puts "added task: #{new_task.title}"
+    if task.target.class.name == "Array"
+      puts "task is an Array! oh noes"
+      task.target.each do |t|
+        new_task = task.action.new
+        new_task.action = task.action
+        new_task.title = task.title
+        new_task.target = t
+        new_task.target.selected = true if new_task.target.respond_to?("selected?")
+        new_task.parent = self
+        @tasks.push new_task
+        puts "added task: #{new_task.title}"
+        
+        
+      end
+    else
+      new_task = task.action.new
+      new_task.action = task.action
+      new_task.title = task.title
+      new_task.target = task.target
+      new_task.target.selected = true if new_task.target.respond_to?("selected?")
+      new_task.parent = self
+      @tasks.push new_task
+      puts "added task: #{new_task.title}"
+    end
+
   end
   
   def get_task

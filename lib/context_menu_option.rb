@@ -1,5 +1,5 @@
 class ContextMenuOption < GameObject
-  attr_accessor :title, :icon, :action, :target
+  attr_accessor :title, :icon, :action, :target, :image_name
   
   def setup
     
@@ -22,6 +22,7 @@ class ContextMenuOption < GameObject
       o.action = options[:action]
     end
     o.title = title
+    
     
     return o
   end

@@ -121,9 +121,14 @@ class GameGrid
     self.cursor.draw
   end
 
-  def timed_tree_growth
-    Tree.random_trees(@@trees, 100).each do |t|
-      t.grow_tree_randomly(@@trees)
+  def timed_tree_growth(num=100)
+    Tree.random_trees(@@trees, num).each do |t|
+      if t.nil?
+        @@trees.remove_game_object(t)
+        self.timed_tree_growth(1)
+      else
+        t.grow_tree_randomly(@@trees)
+      end
     end
   end
 

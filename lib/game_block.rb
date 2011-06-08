@@ -108,6 +108,14 @@ class GameBlock < GameObject
     
   end
   
+  def what_to_perform_task_on?(task)
+    return @actor.menu_options if @actor && @actor.respond_to?("menu_options")
+    return @fringe.menu_options if @fringe && @fringe.respond_to?("menu_options")
+    return @filling.menu_options if @filling && @filling.respond_to?("menu_options")
+    return @floor.menu_options if @floor && @floor.respond_to?("menu_options")
+    return false
+  end
+  
   def next_to?(ablock)
     neighbours = self.all_blocks.blocks_next_to(self)
     #puts "grabbing neighbours: #{neighbours.size}"

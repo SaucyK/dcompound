@@ -18,7 +18,37 @@ class Selection < GameObject
   end
   
   def menu_options #do this next
-    return false
+    options = []
+    handled_actions = []
+    types = {}
+    @blocks.each do |b|
+      options_from_block = b.menu_options
+      unless options_from_block == false || options_from_block.nil?
+        options_from_block.each do |opt|
+          #ContextMenuOption.generate("icon_axe.png", "Chop Tree",:target => self, :action => Chop)
+          unless opt == false
+            unless opt.action == "cancel"
+              if types[opt.action.name.to_sym]
+                types[opt.action.name.to_sym] << opt.target unless types[opt.action.name.to_sym].include? opt.target
+              else
+                types[opt.action.name.to_sym] = [opt.target]
+              end
+              opt.target = nil
+            end
+            #new_opt = ContextMenuOption.new(:image => opt.image, :action => opt.action, :target => self)
+            
+            options << opt unless options.include?(opt) unless handled_actions.include?(opt.action)
+            handled_actions << opt.action unless handled_actions.include?(opt.action)
+          end
+        end
+      end
+    end
+    options.each do |o|
+      
+      o.target = types[o.action.name.to_sym] unless o.action == "cancel"
+    end
+    #reassess targets
+    return options
   end
   
   def clear_selection
