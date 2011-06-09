@@ -6,10 +6,23 @@ class GameBlock < GameObject
   # filling - rock / dirt / water
   # fringe - trees / chests / doors
   # actor - workers
-  attr_accessor :all_blocks, :d, :closed, :previous_cell
+  attr_accessor :all_blocks, :d, :closed, :previous_cell, :function
   
   def add_floor(tile)
+    @floor = nil
+    
     @floor = tile
+    @floor.block = self
+  end
+  
+  def storage?
+    return true if self.function == :storage
+    return false
+  end
+  
+  def farm?
+    return true if self.function == :farm
+    return false
   end
   
   def add_filling(filling)

@@ -15,6 +15,7 @@ require ROOT_PATH + '/lib/game_grid'
 
 
 require ROOT_PATH + '/lib/tile'
+require ROOT_PATH + '/lib/storage'
 require ROOT_PATH + '/lib/tree'
 require ROOT_PATH + '/lib/wall'
 require ROOT_PATH + '/lib/map_cursor'
@@ -29,7 +30,8 @@ require ROOT_PATH + "/lib/skill"
 require ROOT_PATH + '/lib/resource'
 require ROOT_PATH + '/lib/resources/wood'
 require ROOT_PATH + '/lib/tasks/chop'
-
+require ROOT_PATH + '/lib/tasks/till'
+require ROOT_PATH + '/lib/tasks/build_storage'
 
 GAME_X_SIZE = 100
 GAME_Y_SIZE = 100

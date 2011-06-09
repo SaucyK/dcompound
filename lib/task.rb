@@ -6,4 +6,8 @@ class Task
     
   end
   
+  def add_successor_task(task)
+    self.parent.add_task(task)
+  end
+  
 end
